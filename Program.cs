@@ -9,8 +9,8 @@ builder.Services.AddControllersWithViews();
 /*builder.Services.AddDbContext<Contexto> //Anap
     (options => options.UseSqlServer("Data Source=SP-1491024\\SQLSENAI;Initial Catalog = SistemaCardapioFinal;Integrated Security = True;TrustServerCertificate = True"));*/
 
-builder.Services.AddDbContext<Contexto> //Ana Alturria
-    (options => options.UseSqlServer("Data Source=SP-1491037\\SQLSENAI;Initial Catalog =  SistemaCardapioFinal;Integrated Security = True;TrustServerCertificate = True"));
+/*builder.Services.AddDbContext<Contexto> //Ana Alturria
+    (options => options.UseSqlServer("Data Source=SP-1491037\\SQLSENAI;Initial Catalog =  SistemaCardapioFinal;Integrated Security = True;TrustServerCertificate = True"));*/
 
 /*builder.Services.AddDbContext<Contexto> //Ana alonso
     (options => options.UseSqlServer("Data Source=SP-1491013\\SQLSENAI;Initial Catalog =  SistemaCardapioFinal;Integrated Security = True;TrustServerCertificate = True"));*/
