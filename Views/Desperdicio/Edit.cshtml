@@ -1,0 +1,49 @@
+﻿@model SistemaCardapioFinal.Models.Desperdicio
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Desperdicio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DesperdicioId" />
+            <div class="form-group">
+                <label asp-for="NomeVeiculo" class="control-label"></label>
+                <input asp-for="NomeVeiculo" class="form-control" />
+                <span asp-validation-for="NomeVeiculo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QtdAlimento" class="control-label"></label>
+                <input asp-for="QtdAlimento" class="form-control" />
+                <span asp-validation-for="QtdAlimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QtdDesperdicio" class="control-label"></label>
+                <input asp-for="QtdDesperdicio" onkeyup="CalcularPorcentagem()" class="form-control" />
+                <span asp-validation-for="QtdDesperdicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PorcentagemDesperdicio" class="control-label"></label>
+                <input asp-for="PorcentagemDesperdicio" id="PorcentagemDesperdicio" class="form-control" readonly />
+                <span asp-validation-for="PorcentagemDesperdicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
