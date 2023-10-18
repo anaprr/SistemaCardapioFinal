@@ -11,7 +11,7 @@ namespace SistemaCardapioFinal.Models
         public int CardapioId { get; set; }
 
         [Column("CardapioNome")]
-        [Display(Name = "Nome do Cardapio")]
+        [Display(Name = "Dia da Semana")]
         public string CardapioNome { get; set; } = string.Empty;
 
         [ForeignKey("PratoId")]
