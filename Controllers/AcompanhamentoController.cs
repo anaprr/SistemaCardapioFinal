@@ -9,87 +9,87 @@ using SistemaCardapioFinal.Models;
 
 namespace SistemaCardapioFinal.Controllers
 {
-    public class PratoController : Controller
+    public class AcompanhamentoController : Controller
     {
         private readonly Contexto _context;
 
-        public PratoController(Contexto context)
+        public AcompanhamentoController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Prato
+        // GET: Acompanhamento
         public async Task<IActionResult> Index()
         {
-              return _context.Prato != null ? 
-                          View(await _context.Prato.ToListAsync()) :
-                          Problem("Entity set 'Contexto.Prato'  is null.");
+              return _context.Acompanhamento != null ? 
+                          View(await _context.Acompanhamento.ToListAsync()) :
+                          Problem("Entity set 'Contexto.Acompanhamento'  is null.");
         }
 
-        // GET: Prato/Details/5
+        // GET: Acompanhamento/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Prato == null)
+            if (id == null || _context.Acompanhamento == null)
             {
                 return NotFound();
             }
 
-            var prato = await _context.Prato
-                .FirstOrDefaultAsync(m => m.PratoId == id);
-            if (prato == null)
+            var acompanhamento = await _context.Acompanhamento
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (acompanhamento == null)
             {
                 return NotFound();
             }
 
-            return View(prato);
+            return View(acompanhamento);
         }
 
-        // GET: Prato/Create
+        // GET: Acompanhamento/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Prato/Create
+        // POST: Acompanhamento/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PratoId,DescricaoPrato,DescricaoBebida,DescricaoVegetariana")] Prato prato)
+        public async Task<IActionResult> Create([Bind("Id,DescricaoAcompanhamento")] Acompanhamento acompanhamento)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(prato);
+                _context.Add(acompanhamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(prato);
+            return View(acompanhamento);
         }
 
-        // GET: Prato/Edit/5
+        // GET: Acompanhamento/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Prato == null)
+            if (id == null || _context.Acompanhamento == null)
             {
                 return NotFound();
             }
 
-            var prato = await _context.Prato.FindAsync(id);
-            if (prato == null)
+            var acompanhamento = await _context.Acompanhamento.FindAsync(id);
+            if (acompanhamento == null)
             {
                 return NotFound();
             }
-            return View(prato);
+            return View(acompanhamento);
         }
 
-        // POST: Prato/Edit/5
+        // POST: Acompanhamento/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PratoId,DescricaoPrato,DescricaoBebida,DescricaoVegetariana")] Prato prato)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DescricaoAcompanhamento")] Acompanhamento acompanhamento)
         {
-            if (id != prato.PratoId)
+            if (id != acompanhamento.Id)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace SistemaCardapioFinal.Controllers
             {
                 try
                 {
-                    _context.Update(prato);
+                    _context.Update(acompanhamento);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PratoExists(prato.PratoId))
+                    if (!AcompanhamentoExists(acompanhamento.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +114,49 @@ namespace SistemaCardapioFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(prato);
+            return View(acompanhamento);
         }
 
-        // GET: Prato/Delete/5
+        // GET: Acompanhamento/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Prato == null)
+            if (id == null || _context.Acompanhamento == null)
             {
                 return NotFound();
             }
 
-            var prato = await _context.Prato
-                .FirstOrDefaultAsync(m => m.PratoId == id);
-            if (prato == null)
+            var acompanhamento = await _context.Acompanhamento
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (acompanhamento == null)
             {
                 return NotFound();
             }
 
-            return View(prato);
+            return View(acompanhamento);
         }
 
-        // POST: Prato/Delete/5
+        // POST: Acompanhamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Prato == null)
+            if (_context.Acompanhamento == null)
             {
-                return Problem("Entity set 'Contexto.Prato'  is null.");
+                return Problem("Entity set 'Contexto.Acompanhamento'  is null.");
             }
-            var prato = await _context.Prato.FindAsync(id);
-            if (prato != null)
+            var acompanhamento = await _context.Acompanhamento.FindAsync(id);
+            if (acompanhamento != null)
             {
-                _context.Prato.Remove(prato);
+                _context.Acompanhamento.Remove(acompanhamento);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PratoExists(int id)
+        private bool AcompanhamentoExists(int id)
         {
-          return (_context.Prato?.Any(e => e.PratoId == id)).GetValueOrDefault();
+          return (_context.Acompanhamento?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

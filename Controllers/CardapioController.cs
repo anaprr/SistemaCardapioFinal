@@ -21,7 +21,7 @@ namespace SistemaCardapioFinal.Controllers
         // GET: Cardapio
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Cardapio.Include(c => c.Prato);
+            var contexto = _context.Cardapio.Include(c => c.Acompanhamento).Include(c => c.Base).Include(c => c.Bebida).Include(c => c.Salada).Include(c => c.Sobremesa);
             return View(await contexto.ToListAsync());
         }
 
@@ -34,7 +34,11 @@ namespace SistemaCardapioFinal.Controllers
             }
 
             var cardapio = await _context.Cardapio
-                .Include(c => c.Prato)
+                .Include(c => c.Acompanhamento)
+                .Include(c => c.Base)
+                .Include(c => c.Bebida)
+                .Include(c => c.Salada)
+                .Include(c => c.Sobremesa)
                 .FirstOrDefaultAsync(m => m.CardapioId == id);
             if (cardapio == null)
             {
@@ -47,7 +51,11 @@ namespace SistemaCardapioFinal.Controllers
         // GET: Cardapio/Create
         public IActionResult Create()
         {
-            ViewData["PratoId"] = new SelectList(_context.Prato, "PratoId", "DescricaoPrato");
+            ViewData["AcompanhamentoId"] = new SelectList(_context.Acompanhamento, "Id", "DescricaoAcompanhamento");
+            ViewData["BaseId"] = new SelectList(_context.Base, "Id", "DescricaoBase");
+            ViewData["BebidaId"] = new SelectList(_context.Bebida, "Id", "DescricaoBebida");
+            ViewData["SaladaId"] = new SelectList(_context.Salada, "Id", "DescricaoSalada");
+            ViewData["SobremesaId"] = new SelectList(_context.Sobremesa, "Id", "DescricaoSobremesa");
             return View();
         }
 
@@ -56,7 +64,7 @@ namespace SistemaCardapioFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardapioId,CardapioNome,PratoId")] Cardapio cardapio)
+        public async Task<IActionResult> Create([Bind("CardapioId,CardapioNome,BaseId,AcompanhamentoId,SaladaId,BebidaId,SobremesaId")] Cardapio cardapio)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +72,11 @@ namespace SistemaCardapioFinal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PratoId"] = new SelectList(_context.Prato, "PratoId", "DescricaoPrato", cardapio.PratoId);
+            ViewData["AcompanhamentoId"] = new SelectList(_context.Acompanhamento, "Id", "DescricaoAcompanhamento", cardapio.AcompanhamentoId);
+            ViewData["BaseId"] = new SelectList(_context.Base, "Id", "DescricaoBase", cardapio.BaseId);
+            ViewData["BebidaId"] = new SelectList(_context.Bebida, "Id", "DescricaoBebida", cardapio.BebidaId);
+            ViewData["SaladaId"] = new SelectList(_context.Salada, "Id", "DescricaoSalada", cardapio.SaladaId);
+            ViewData["SobremesaId"] = new SelectList(_context.Sobremesa, "Id", "DescricaoSobremesa", cardapio.SobremesaId);
             return View(cardapio);
         }
 
@@ -81,7 +93,11 @@ namespace SistemaCardapioFinal.Controllers
             {
                 return NotFound();
             }
-            ViewData["PratoId"] = new SelectList(_context.Prato, "PratoId", "DescricaoPrato", cardapio.PratoId);
+            ViewData["AcompanhamentoId"] = new SelectList(_context.Acompanhamento, "Id", "DescricaoAcompanhamento", cardapio.AcompanhamentoId);
+            ViewData["BaseId"] = new SelectList(_context.Base, "Id", "DescricaoBase", cardapio.BaseId);
+            ViewData["BebidaId"] = new SelectList(_context.Bebida, "Id", "DescricaoBebida", cardapio.BebidaId);
+            ViewData["SaladaId"] = new SelectList(_context.Salada, "Id", "DescricaoSalada", cardapio.SaladaId);
+            ViewData["SobremesaId"] = new SelectList(_context.Sobremesa, "Id", "DescricaoSobremesa", cardapio.SobremesaId);
             return View(cardapio);
         }
 
@@ -90,7 +106,7 @@ namespace SistemaCardapioFinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CardapioId,CardapioNome,PratoId")] Cardapio cardapio)
+        public async Task<IActionResult> Edit(int id, [Bind("CardapioId,CardapioNome,BaseId,AcompanhamentoId,SaladaId,BebidaId,SobremesaId")] Cardapio cardapio)
         {
             if (id != cardapio.CardapioId)
             {
@@ -117,7 +133,11 @@ namespace SistemaCardapioFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PratoId"] = new SelectList(_context.Prato, "PratoId", "DescricaoPrato", cardapio.PratoId);
+            ViewData["AcompanhamentoId"] = new SelectList(_context.Acompanhamento, "Id", "DescricaoAcompanhamento", cardapio.AcompanhamentoId);
+            ViewData["BaseId"] = new SelectList(_context.Base, "Id", "DescricaoBase", cardapio.BaseId);
+            ViewData["BebidaId"] = new SelectList(_context.Bebida, "Id", "DescricaoBebida", cardapio.BebidaId);
+            ViewData["SaladaId"] = new SelectList(_context.Salada, "Id", "DescricaoSalada", cardapio.SaladaId);
+            ViewData["SobremesaId"] = new SelectList(_context.Sobremesa, "Id", "DescricaoSobremesa", cardapio.SobremesaId);
             return View(cardapio);
         }
 
@@ -130,7 +150,11 @@ namespace SistemaCardapioFinal.Controllers
             }
 
             var cardapio = await _context.Cardapio
-                .Include(c => c.Prato)
+                .Include(c => c.Acompanhamento)
+                .Include(c => c.Base)
+                .Include(c => c.Bebida)
+                .Include(c => c.Salada)
+                .Include(c => c.Sobremesa)
                 .FirstOrDefaultAsync(m => m.CardapioId == id);
             if (cardapio == null)
             {

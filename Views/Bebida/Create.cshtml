@@ -1,4 +1,4 @@
-﻿@model SistemaCardapioFinal.Models.Prato
+﻿@model SistemaCardapioFinal.Models.Bebida
 
 @{
     ViewData["Title"] = "Create";
@@ -6,26 +6,16 @@
 
 <h1>Create</h1>
 
-<h4>Prato</h4>
+<h4>Bebida</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DescricaoPrato" class="control-label"></label>
-                <input asp-for="DescricaoPrato" class="form-control" />
-                <span asp-validation-for="DescricaoPrato" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="DescricaoBebida" class="control-label"></label>
                 <input asp-for="DescricaoBebida" class="form-control" />
                 <span asp-validation-for="DescricaoBebida" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DescricaoVegetariana" class="control-label"></label>
-                <input asp-for="DescricaoVegetariana" class="form-control" />
-                <span asp-validation-for="DescricaoVegetariana" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

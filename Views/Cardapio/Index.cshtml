@@ -16,7 +16,19 @@
                 @Html.DisplayNameFor(model => model.CardapioNome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prato)
+                @Html.DisplayNameFor(model => model.Base.DescricaoBase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acompanhamento.DescricaoAcompanhamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salada.DescricaoSalada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bebida.DescricaoBebida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobremesa.DescricaoSobremesa)
             </th>
             <th></th>
         </tr>
@@ -28,7 +40,19 @@
                 @Html.DisplayFor(modelItem => item.CardapioNome)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.Prato.DescricaoPrato)
+                @Html.DisplayFor(modelItem => item.Base.DescricaoBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acompanhamento.DescricaoAcompanhamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salada.DescricaoSalada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bebida.DescricaoBebida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobremesa.DescricaoSobremesa)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CardapioId">Edit</a> |
